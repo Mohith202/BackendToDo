@@ -22,7 +22,9 @@ const url = `mongodb+srv://${username}:${password}@mydata.bkwkloc.mongodb.net/?r
 // Connect to MongoDB Atlas
 mongoose.connect(url, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 30000, // Increase timeout to 30 seconds
+    socketTimeoutMS: 45000 // Increase socket timeout to 45 seconds
 }).then(() => {
     console.log('Connected to MongoDB Atlas');
 }).catch(err => {
