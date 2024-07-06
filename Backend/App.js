@@ -45,6 +45,13 @@ const Todo = mongoose.model('Todo', todoSchema);
 app.post('/', async (req, res) => {
     try {
         const { title, description, date, detail_description } = req.body;
+        
+        // Check for duplicate To-Do by title
+        const existingTodo = await Todo.findOne({ title });
+        if (existingTodo) {
+            return res.status(400).json({ error: 'To-Do with this title already exists' });
+        }
+
         const newTodo = new Todo({ title, description, date, detail_description });
         await newTodo.save();
         res.status(201).json(newTodo);
