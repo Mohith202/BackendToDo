@@ -13,9 +13,9 @@ app.use(bodyParser.json());
 
 // Serve static files from the "public" directory
 
-
 const username = process.env.USERNAME1; // Ensure the environment variable names are correct
 const password = encodeURIComponent(process.env.PASSWORD);
+console.log(username,password)
 
 const url = `mongodb+srv://${username}:${password}@mydata.bkwkloc.mongodb.net/?retryWrites=true&w=majority&appName=MyData`;
 
